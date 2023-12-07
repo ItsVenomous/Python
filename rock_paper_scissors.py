@@ -1,16 +1,16 @@
-import random    
-import sys
+import random    # importing random function
+import sys    # importing sys function to terminate run
 
-user_action = input("Enter a choice (rock, paper, scissors): ")
-possible_actions = ["rock", "paper", "scissors"]
-computer_action = random.choice(possible_actions)
-if user_action in possible_actions:
+user_action = input("Enter a choice (rock, paper, scissors): ")   # allow the user to input
+possible_actions = ["rock", "paper", "scissors"]   # list of possible actions by the user
+computer_action = random.choice(possible_actions)  # randomize the computer's choice
+if user_action in possible_actions:   # if the user's input is in the list of possible actions, print below 
     print(f"You chose {user_action}, computer chose {computer_action}.")
-else:
+else:   # otherwise print below
     print('Invalid Input!, please enter either rock, paper or scissors')
-    sys.exit()
+    sys.exit()   # terminate run
 
-if user_action == computer_action:
+if user_action == computer_action:  
     print(f"Both players selected {user_action}. It's a tie!")
 elif user_action == "rock":
     if computer_action == "scissors":
