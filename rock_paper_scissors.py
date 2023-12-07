@@ -1,13 +1,14 @@
-import random
+import random    
+import sys
 
 user_action = input("Enter a choice (rock, paper, scissors): ")
 possible_actions = ["rock", "paper", "scissors"]
 computer_action = random.choice(possible_actions)
-if user_action != possible_actions:
-    print('Invalid Input!, please enter either rock, paper or scissors')
-
+if user_action in possible_actions:
+    print(f"You chose {user_action}, computer chose {computer_action}.")
 else:
-    print(f"\nYou chose {user_action}, computer chose {computer_action}.\n")
+    print('Invalid Input!, please enter either rock, paper or scissors')
+    sys.exit()
 
 if user_action == computer_action:
     print(f"Both players selected {user_action}. It's a tie!")
