@@ -8,10 +8,40 @@ class Item:
     def __init__(self, title: str, item_type: str, date_added, date_of_manufacture, description: str):
         self.title = title
         self.type = item_type
-        self.date_added: float = date_added
         self.date_added: datetime = datetime.strptime(date_added, "%Y/%m/%d")
         self.date_of_manufacture: datetime = datetime.strptime(date_of_manufacture, "%Y/%m/%d")
         Item.items_list.append(self)
+
+    def __str__(self):
+        added = self.date_added.strftime("%Y/%m/%d")
+        manufacture = self.date_of_manufacture.strftime("%Y/%m/%d")
+        return f'{self.title}\t{self.type}\t{added}\t{manufacture}'
+
+
+def add_item():
+    print('')
+    title = input('Title> ')
+    item_type = input('Types : Computer, Camera, Phone, Video Player\nType> ').capitalize()
+    possible_types = ['Computer', 'Camera', 'Phone', 'Video Player']
+
+    if item_type not in possible_types:
+        print('Invalid Input! please enter either Computer, Camera, Phone or Video Player')
+        return
+    date_added = input('Date Added> ')
+    date_of_manufacture = input('Date of Manufacture> ')
+    description = input('Description> ')
+    print('')
+    print('Item Added Successfully!')
+    Item(title, item_type, date_added, date_of_manufacture, description)
+
+
+def show_items():
+    print('Item\tType\tDate Added\tDate of Manufacture')
+    for item in Item.items_list:
+        # Format dates for display
+        added = item.date_added.strftime("%Y/%m/%d")
+        manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
+        print('\t'.join([item.title, item.type, added, manufacture]))
 
 
 def show_menu():
@@ -38,30 +68,6 @@ def show_menu():
             break
         else:
             print('Invalid Choice!\n')
-
-
-def add_item():
-    print('')
-    title = input('Title> ')
-    item_type = input('Types : 1. Computer, 2. Camera, 3. Phone, 4. Video Player\nType> ')
-    possible_types = ["1", "2", "3", "4"]
-
-    if item_type not in possible_types:
-        print('Invalid Input!, please enter either 1 , 2 , 3 or 4')
-        return
-    date_added = input('Date Added> ')
-    date_of_manufacture = input('Date of Manufacture> ')
-    description = input('Description> ')
-    print('')
-    Item(title, item_type, date_added, date_of_manufacture, description)
-
-
-def show_items():
-    print('Item\tType\tDate Added\tDate of Manufacture')
-    for item in Item.items_list:
-        formatted_date_added = item.date_added.strftime("%Y/%m/%d")
-        formatted_date_manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
-        print('\t'.join([item.title, item.type, formatted_date_added, formatted_date_manufacture]))
 
 
 show_menu()
