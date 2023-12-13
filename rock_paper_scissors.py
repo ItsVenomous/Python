@@ -8,7 +8,7 @@ if user_action in possible_actions:   # if the user's input is in the list of po
     print(f"You chose {user_action}, computer chose {computer_action}.")
 else:   # otherwise print below
     print('Invalid Input!, please enter either rock, paper or scissors')
-    sys.exit()   # terminate run
+    return  
 
 if user_action == computer_action:  
     print(f"Both players selected {user_action}. It's a tie!")
