@@ -1,15 +1,16 @@
 from __future__ import annotations
+from datetime import datetime
 
 
 class Item:
     items_list = []
 
-    def __init__(self, title: str, item_type: str, date_added: int, date_of_manufacture: int, description: str):
+    def __init__(self, title: str, item_type: str, date_added, date_of_manufacture, description: str):
         self.title = title
         self.type = item_type
         self.date_added: float = date_added
-        self.date_of_manufacture: float = date_of_manufacture
-        self.description: str = description
+        self.date_added: datetime = datetime.strptime(date_added, "%Y/%m/%d")
+        self.date_of_manufacture: datetime = datetime.strptime(date_of_manufacture, "%Y/%m/%d")
         Item.items_list.append(self)
 
 
@@ -52,13 +53,15 @@ def add_item():
     date_of_manufacture = input('Date of Manufacture> ')
     description = input('Description> ')
     print('')
-    Item(title, item_type, int(date_added), int(date_of_manufacture), description)
+    Item(title, item_type, date_added, date_of_manufacture, description)
 
 
 def show_items():
     print('Item\tType\tDate Added\tDate of Manufacture')
     for item in Item.items_list:
-        print(f'{item.title}\t{item.type}\t{item.date_added}\t{item.date_of_manufacture}')
+        formatted_date_added = item.date_added.strftime("%Y/%m/%d")
+        formatted_date_manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
+        print('\t'.join([item.title, item.type, formatted_date_added, formatted_date_manufacture]))
 
 
 show_menu()
