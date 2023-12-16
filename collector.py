@@ -36,12 +36,12 @@ def add_item():
 
 
 def show_items():
-    print('Item\tType\tDate Added\tDate of Manufacture')
+    print('{0:10}\t{1:5}\t{2:10}\t{3:10}'.format('Item', 'Type', 'Date Added', 'Date of Manufacture'))
     for item in Item.items_list:
         # Format dates for display
         added = item.date_added.strftime("%Y/%m/%d")
         manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
-        print('\t'.join([item.title, item.type, added, manufacture]))
+        print('\t'.join([item.title.ljust(10), item.type.ljust(5), added, manufacture]))
 
 
 def edit_items():  # TODO
@@ -49,7 +49,7 @@ def edit_items():  # TODO
 
 
 def delete_items():  # TODO
-    pass
+    pass  # Skipping for now
 
 
 def show_menu():
