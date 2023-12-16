@@ -45,7 +45,7 @@ def show_items():
 
 
 def edit_items():  # TODO
-    pass
+    pass # Skipping for now
 
 
 def delete_items():  # TODO
