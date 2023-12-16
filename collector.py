@@ -44,6 +44,14 @@ def show_items():
         print('\t'.join([item.title, item.type, added, manufacture]))
 
 
+def edit_items():  # TODO
+    pass
+
+
+def delete_items():  # TODO
+    pass
+
+
 def show_menu():
     while True:
         print('-------------------------')
@@ -59,11 +67,11 @@ def show_menu():
         if response == '1':
             add_item()
         elif response == '2':
-            show_items()  # TODO
+            show_items()
         elif response == '3':
-            edit_items()  # TODO
+            edit_items()
         elif response == '4':
-            delete_items()  # TODO
+            delete_items()
         elif response == '5':
             break
         else:
