@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
+import pickle
 
 
 class Item:
     items_list = []
+    possible_types = ['Computer', 'Camera', 'Phone', 'Video Player']
 
     def __init__(self, title: str, item_type: str, date_added, date_of_manufacture, description: str):
         self.title = title
@@ -23,11 +25,11 @@ def show_menu():
         print('-------------------------')
         print('Retro Technology Collector')
         print('-------------------------')
-        print('1. Add Item to Collection.')
+        print('1. Add An Item to Collection.')
         print('2. Show Items in the Collection.')
-        print('3. Edit An Item in the Collection.')
-        print('4. Delete Items in the Collection.')
-        print('5. Exit')
+        print('3. Delete Items in the Collection.')
+        print('4. Add An Item Type.')
+        print('5. Exit.')
         response = input('Choice> ')
 
         if response == '1':
@@ -35,9 +37,9 @@ def show_menu():
         elif response == '2':
             show_items()
         elif response == '3':
-            edit_items()
-        elif response == '4':
             delete_items()
+        elif response == '4':
+            add_item_type()
         elif response == '5':
             break
         else:
@@ -46,12 +48,11 @@ def show_menu():
 
 def add_item():
     print('')
-    title = input('Title> ')
-    item_type = input('Types : Computer, Camera, Phone, Video Player\nType> ').capitalize()
-    possible_types = ['Computer', 'Camera', 'Phone', 'Video Player']
+    title = input('Title> ').capitalize()
+    item_type = input(f'Types: {", ".join(Item.possible_types)}\nType> ').capitalize()
 
-    if item_type not in possible_types:
-        print('Invalid Input! please enter either Computer, Camera, Phone or Video Player')
+    if item_type not in Item.possible_types:
+        print('Invalid Input! Please Enter A Currently Valid Item Type, Or Else Add A New Item Type')
         return
     date_added = input('Date Added> ')
     date_of_manufacture = input('Date of Manufacture> ')
@@ -67,23 +68,26 @@ def show_items():
         # Format dates for display
         added = item.date_added.strftime("%Y/%m/%d")
         manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
-        print('\t'.join([item.title.ljust(10), item.type.ljust(5), added, manufacture]))
-
-
-def edit_items():  # TODO
-    pass
+        print('\t'.join([item.title.ljust(10), item.type.ljust(10), added, manufacture]))
 
 
 def delete_items():
     print('')
-    deleting = input('Enter the the item you want to delete: ')
+    deleting = input('Enter the title of the item you want to delete> ').capitalize()
     for item in Item.items_list:
         if item.title == deleting:
             Item.items_list.remove(item)
             print(f'Item "{deleting}" deleted successfully!')
             return
         else:
-            print(f'Item "{deleting}" not found in the collection.')
+            print(f'Item "{deleting}" was not found in the collection.')
 
 
-show_menu()
+def add_item_type():
+    new_type = input('Create A New Item Type> ').capitalize()
+    Item.possible_types.append(new_type)
+    print(f'Item type "{new_type}" added successfully!')
+
+
+if __name__ == "__main__":
+    show_menu()
