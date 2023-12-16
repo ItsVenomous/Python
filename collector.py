@@ -1,6 +1,5 @@
 from __future__ import annotations
 from datetime import datetime
-import pickle
 
 
 class Item:
@@ -19,6 +18,19 @@ class Item:
         manufacture = self.date_of_manufacture.strftime("%Y/%m/%d")
         return f'{self.title}\t{self.type}\t{added}\t{manufacture}'
 
+    def edit_items(self):
+        print(f'\nEditing Item: {self.title}')
+        self.title = input('New Title> ').capitalize()
+        self.type = input(f'New Type: {", ".join(Item.possible_types)}\nNew Type> ').capitalize()
+        if self.type not in Item.possible_types:
+            print('Invalid Input! Please Enter A Currently Valid Item Type, Or Else Add A New Item Type')
+            return
+        self.date_added = datetime.strptime(input('New Date Added> '), "%Y/%m/%d")
+        self.date_of_manufacture = datetime.strptime(input('New Date of Manufacture> '), "%Y/%m/%d")
+        self.description = input('New Title> ')
+
+        print('Item Edited Successfully!')
+
 
 def show_menu():
     while True:
@@ -28,8 +40,9 @@ def show_menu():
         print('1. Add An Item to Collection.')
         print('2. Show Items in the Collection.')
         print('3. Delete Items in the Collection.')
-        print('4. Add An Item Type.')
-        print('5. Exit.')
+        print('4. Add a Non-existent Item Type.')
+        print('5. Edit an Existing Item.')
+        print('6. Exit.')
         response = input('Choice> ')
 
         if response == '1':
@@ -41,6 +54,8 @@ def show_menu():
         elif response == '4':
             add_item_type()
         elif response == '5':
+            edit_items()
+        elif response == '6':
             break
         else:
             print('Invalid Choice!\n')
@@ -87,6 +102,17 @@ def add_item_type():
     new_type = input('Create A New Item Type> ').capitalize()
     Item.possible_types.append(new_type)
     print(f'Item type "{new_type}" added successfully!')
+
+
+def edit_items():
+    print('')
+    editing = input('Enter the item you want to edit> ').capitalize()
+    for item in Item.items_list:
+        if item.title == editing:
+            item.edit_item()
+            return
+    else:
+        print(f'Item "{editing}" was not found in the collection.')
 
 
 if __name__ == "__main__":
