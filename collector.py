@@ -18,40 +18,6 @@ class Item:
         return f'{self.title}\t{self.type}\t{added}\t{manufacture}'
 
 
-def add_item():
-    print('')
-    title = input('Title> ')
-    item_type = input('Types : Computer, Camera, Phone, Video Player\nType> ').capitalize()
-    possible_types = ['Computer', 'Camera', 'Phone', 'Video Player']
-
-    if item_type not in possible_types:
-        print('Invalid Input! please enter either Computer, Camera, Phone or Video Player')
-        return
-    date_added = input('Date Added> ')
-    date_of_manufacture = input('Date of Manufacture> ')
-    description = input('Description> ')
-    print('')
-    print('Item Added Successfully!')
-    Item(title, item_type, date_added, date_of_manufacture, description)
-
-
-def show_items():
-    print('{0:10}\t{1:5}\t{2:10}\t{3:10}'.format('Item', 'Type', 'Date Added', 'Date of Manufacture'))
-    for item in Item.items_list:
-        # Format dates for display
-        added = item.date_added.strftime("%Y/%m/%d")
-        manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
-        print('\t'.join([item.title.ljust(10), item.type.ljust(5), added, manufacture]))
-
-
-def edit_items():  # TODO
-    pass # Skipping for now
-
-
-def delete_items():  # TODO
-    pass  # Skipping for now
-
-
 def show_menu():
     while True:
         print('-------------------------')
@@ -76,6 +42,48 @@ def show_menu():
             break
         else:
             print('Invalid Choice!\n')
+
+
+def add_item():
+    print('')
+    title = input('Title> ')
+    item_type = input('Types : Computer, Camera, Phone, Video Player\nType> ').capitalize()
+    possible_types = ['Computer', 'Camera', 'Phone', 'Video Player']
+
+    if item_type not in possible_types:
+        print('Invalid Input! please enter either Computer, Camera, Phone or Video Player')
+        return
+    date_added = input('Date Added> ')
+    date_of_manufacture = input('Date of Manufacture> ')
+    description = input('Description> ')
+    print('')
+    print('Item Added Successfully!')
+    Item(title, item_type, date_added, date_of_manufacture, description)
+
+
+def show_items():
+    print('{0:10}\t{1:10}\t{2:10}\t{3:10}'.format('Item', 'Type', 'Date Added', 'Date of Manufacture'))
+    for item in Item.items_list:
+        # Format dates for display
+        added = item.date_added.strftime("%Y/%m/%d")
+        manufacture = item.date_of_manufacture.strftime("%Y/%m/%d")
+        print('\t'.join([item.title.ljust(10), item.type.ljust(5), added, manufacture]))
+
+
+def edit_items():  # TODO
+    pass
+
+
+def delete_items():
+    print('')
+    deleting = input('Enter the the item you want to delete: ')
+    for item in Item.items_list:
+        if item.title == deleting:
+            Item.items_list.remove(item)
+            print(f'Item "{deleting}" deleted successfully!')
+            return
+        else:
+            print(f'Item "{deleting}" not found in the collection.')
 
 
 show_menu()
