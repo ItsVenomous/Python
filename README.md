@@ -1,7 +1,7 @@
 <h1>My Python Projects</h1>
   
   <p>
-    On this GitHub repository, I publish my Python projects, Feel free to check them out! But do not copy-paste, Thank you :)
+    On this GitHub repository, I publish my Python projects, Feel free to check them out! But do not copy paste, Thank you :)
   </p>
   <!-- Badges -->
 <p>
