@@ -1,4 +1,4 @@
-  <img src="Python/logo.png](https://github.com/ItsVenomous/Python/blob/main/logo.png)" alt="logo" width="200" height="auto" />
+  <img src="/Python/blob/main/logo.png](https://github.com/ItsVenomous/Python/blob/main/logo.png)" alt="logo" width="200" height="auto" />
   <h1>My Python Projects</h1>
   
   <p>
