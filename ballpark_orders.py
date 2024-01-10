@@ -57,7 +57,7 @@ def place_order():
 
     # Displaying the final price, Rounding to reduce the decimal places to 2
     print('Price:', round(price, 2), 'Euros')
-    print('Tax:', round(price*0.07, 2), 'Euros')
+    print('Tax:', round(price * 0.07, 2), 'Euros')
     print('--------------------------------------------')
     print('The total cost for your order is', round(price * 1.07, 2), 'Euros!')
 
