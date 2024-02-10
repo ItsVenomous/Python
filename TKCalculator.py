@@ -58,5 +58,5 @@ lbl_result_text = StringVar()
 lbl_result_text.set('0')
 lbl_result = Label(top, textvariable=lbl_result_text, font='Helvetica 18 bold')
 lbl_result.place(x=90, y=120)
-# Start the loop to show the window
+# Start loop to show the window
 top.mainloop()
