@@ -1,4 +1,4 @@
-import random
+import random # importing the random module
 
 flips = 1
 heads = 0
